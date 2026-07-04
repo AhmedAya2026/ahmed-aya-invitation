@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1200);
     });
 
-    // كود العداد التنازلي التلقائي لميعاد الفرح المحدد 31 يوليو 2026 الساعة 8:00 مساءً
+    // كود العداد التنازلي التلقائي لميعاد الفرح المحدد 31 يوليو 2026 الساعة 8:00 مساءً (20:00)
     const weddingTarget = new Date("July 31, 2026 20:00:00").getTime();
 
     const updateCountdown = () => {
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const timeLeft = weddingTarget - currentTime;
 
         if (timeLeft < 0) {
-            document.querySelector(".countdown-container").innerHTML = "<div style='width:100%; padding:20px; text-align:center; color:#e0be77; font-family:Cinzel, serif;'>THE WEDDING HAS BEGUN 🎉</div>";
+            document.querySelector(".countdown-container").innerHTML = "<div style='width:100%; padding:20px; text-align:center; color:#b08d57; font-family:Cinzel, serif;'>THE WEDDING HAS BEGUN 🎉</div>";
             return;
         }
 
