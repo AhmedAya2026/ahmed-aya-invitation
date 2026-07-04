@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const envelopeWrapper = document.getElementById("envelopeWrapper");
     const mainContent = document.getElementById("mainContent");
 
-    // تفعيل حدث فتح غلاف الظرف والانتقال الانسيابي لصفحات الدعوة الممتدة
+    // حدث النقر لفتح الظرف والانتقال لصفحات الدعوة المفتوحة
     envelope.addEventListener("click", () => {
         envelope.classList.add("open");
         
@@ -14,65 +14,65 @@ document.addEventListener("DOMContentLoaded", () => {
                 envelopeWrapper.classList.add("hidden");
                 mainContent.classList.remove("hidden");
                 
-                // التوجيه الفوري لبداية الصفحة الأولى بنعومة تامة وسلاسة
+                // التوجيه الفوري لبداية المحتوى المفتوح
                 window.scrollTo({ top: 0, behavior: "instant" });
                 
-                // تشغيل نظام مراقبة ظهور الأقسام بعد فتح الظرف مباشرة
-                startScrollAnimation();
+                // تشغيل المراقب الذكي لحركات الظهور والاختفاء الناعمة فوراً
+                initScrollObserver();
             }, 1000);
             
         }, 1200);
     });
 
-    // كود تحريك الشاشة السينمائي (Fade-in / Fade-out لبيانات كل صفحة عند ظهورها)
-    function startScrollAnimation() {
-        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    // كود حركة الانتقال السينمائية (Fade-in / Fade-out) التلقائية عند سحب الشاشة
+    function initScrollObserver() {
+        const sections = document.querySelectorAll('.animate-section');
         
-        const observerOptions = {
+        const options = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.2 // تفعيل التأثير عندما يظهر 20% من كارت الصفحة بداخل الشاشة
+            threshold: 0.4 // يتم تفعيل وفتح التأثير الفخم عندما يظهر 40% من محتوى الصفحة بداخل الشاشة
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    entry.target.classList.add('active-view');
                 } else {
-                    // إزالة الكلاس عند الخروج لإعادة تشغيل الحركة التلقائية الفخمة صعوداً ونزولاً
-                    entry.target.classList.remove('visible');
+                    // إزالة الكلاس عند الخروج لإعادة توليد الحركة الانسيابية صعوداً ونزولاً كالفيديو تماماً
+                    entry.target.classList.remove('active-view');
                 }
             });
-        }, observerOptions);
+        }, options);
 
-        animatedElements.forEach(element => {
-            observer.observe(element);
+        sections.forEach(section => {
+            observer.observe(section);
         });
     }
 
-    // إعداد وقت وتوقيت العداد التنازلي التلقائي (31 يوليو 2026 الساعة 8:00 مساءً)
-    const weddingTarget = new Date("July 31, 2026 20:00:00").getTime();
+    // برمجة توقيت العداد التنازلي التلقائي (31 يوليو 2026 الساعة 8:00 مساءً)
+    const weddingDate = new Date("July 31, 2026 20:00:00").getTime();
 
-    const updateCountdown = () => {
-        const currentTime = new Date().getTime();
-        const timeLeft = weddingTarget - currentTime;
+    const runCountdown = () => {
+        const now = new Date().getTime();
+        const diff = weddingDate - now;
 
-        if (timeLeft < 0) {
-            document.querySelector(".countdown-container-square").innerHTML = "<div style='grid-column: span 2; padding:15px; text-align:center; color:#600018; font-family:Cinzel, serif; font-weight:900; font-size:1.4rem;'>THE WEDDING HAS BEGUN 🎉</div>";
+        if (diff < 0) {
+            document.querySelector(".countdown-container-square").innerHTML = "<div style='grid-column: span 2; padding:20px; text-align:center; color:#c5a059; font-family:Cinzel, serif; font-weight:800; font-size:1.3rem;'>THE WEDDING HAS BEGUN 🎉</div>";
             return;
         }
 
-        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-        document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-        document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-        document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-        document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+        document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+        document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+        document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
     };
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    runCountdown();
+    setInterval(runCountdown, 1000);
 });
