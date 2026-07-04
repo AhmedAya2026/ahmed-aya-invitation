@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 envelopeWrapper.classList.add("hidden");
                 mainContent.classList.remove("hidden");
                 
-                // التوجيه الفوري لبداية المحتوى المفتوح
+                // التوجيه الفوري المباشر لبداية المحتوى المفتوح
                 window.scrollTo({ top: 0, behavior: "instant" });
                 
                 // تشغيل المراقب الذكي لحركات الظهور والاختفاء الناعمة فوراً
@@ -24,14 +24,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1200);
     });
 
-    // كود حركة الانتقال السينمائية (Fade-in / Fade-out) التلقائية عند سحب الشاشة
+    // كود حركة الانتقال السينمائية (Fade-in / Fade-out) التلقائية عند سحب الشاشة لأسفل أو لأعلى
     function initScrollObserver() {
         const sections = document.querySelectorAll('.animate-section');
         
         const options = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.35 // يتم تفعيل وفتح التأثير الفخم عندما يظهر 35% من محتوى الصفحة بداخل الشاشة
+            threshold: 0.3 // يتم تفعيل التأثير السينمائي عندما يظهر 30% من محتوى الصفحة داخل الرؤية لشاشة الهاتف
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active-view');
                 } else {
-                    // إزالة الكلاس عند الخروج لإعادة توليد الحركة الانسيابية صعوداً ونزولاً كالفيديو تماماً
+                    // إزالة الكلاس عند الخروج لإعادة تشغيل الحركات التلقائية الانسيابية صعوداً ونزولاً كالفيديو
                     entry.target.classList.remove('active-view');
                 }
             });
