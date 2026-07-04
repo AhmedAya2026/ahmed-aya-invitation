@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const options = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.4 // يتم تفعيل وفتح التأثير الفخم عندما يظهر 40% من محتوى الصفحة بداخل الشاشة
+            threshold: 0.35 // يتم تفعيل وفتح التأثير الفخم عندما يظهر 35% من محتوى الصفحة بداخل الشاشة
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // برمجة توقيت العداد التنازلي التلقائي (31 يوليو 2026 الساعة 8:00 مساءً)
+    // برمجة توقيت العداد التنازلي التلقائي لبياناتك الاصلية (31 يوليو 2026 الساعة 8:00 مساءً)
     const weddingDate = new Date("July 31, 2026 20:00:00").getTime();
 
     const runCountdown = () => {
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const diff = weddingDate - now;
 
         if (diff < 0) {
-            document.querySelector(".countdown-container-square").innerHTML = "<div style='grid-column: span 2; padding:20px; text-align:center; color:#c5a059; font-family:Cinzel, serif; font-weight:800; font-size:1.3rem;'>THE WEDDING HAS BEGUN 🎉</div>";
+            document.querySelector(".countdown-container-square").innerHTML = "<div style='grid-column: span 2; padding:20px; text-align:center; color:#600018; font-family:Cinzel, serif; font-weight:900; font-size:1.3rem;'>THE WEDDING HAS BEGUN 🎉</div>";
             return;
         }
 
