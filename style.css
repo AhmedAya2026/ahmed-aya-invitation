@@ -147,6 +147,7 @@ body {
     letter-spacing: 2px;
     animation: blinker 1.6s infinite alternate;
 }
+@webkit-keyframes blinker { from { opacity: 0.4; } to { opacity: 1; } }
 @keyframes blinker { from { opacity: 0.4; } to { opacity: 1; } }
 
 .envelope.open .flap { transform: rotateX(180deg); z-index: 1; }
@@ -171,7 +172,6 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    /* التزام الالتصاق التلقائي الصارم بالمركز عند التمرير لأسفل */
     scroll-snap-align: start;
     scroll-snap-stop: always;
 }
@@ -181,20 +181,19 @@ body {
     width: 100%;
     height: 100%;
     max-width: 540px;
-    padding: 60px 24px; /* توسيع حواف النصوص لتملأ كامل طول وعرض الصفحة */
+    padding: 60px 24px; 
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* توزيع المحتوى ليملأ الشاشة بدلاً من التمركز الضيق في المنتصف */
+    justify-content: space-between; 
     align-items: center;
     
-    /* إعداد حركة الظهور والاختفاء الناعمة التلقائية لأسفل ولأعلى كالفيديو */
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* الكلاس النشط الذي يُفعل تلقائياً بالجافاسكريبت عند تمرير الشاشة للقسم المخصص */
+/* الكلاس النشط للأنيميشن السينمائي */
 .animate-section.active-view .page-inner {
     opacity: 1;
     transform: translateY(0);
@@ -223,7 +222,22 @@ h1, h2, h3, h4 {
 
 /* تفاصيل الصفحة الأولى المفتوحة */
 .save-the-date { font-size: 0.95rem; font-weight: 700; letter-spacing: 5px; color: #2b040a; }
-.main-names { font-size: 3.2rem; font-weight: 900; color: #600018; letter-spacing: 3px; line-height: 1.2; margin: 20px 0; }
+
+.main-names { 
+    font-size: 3.2rem; 
+    font-weight: 900; 
+    color: #600018; 
+    letter-spacing: 3px; 
+    line-height: 1.1; /* ضبط المسافات الرأسية بعد نزول علامة الربط */
+    margin: 15px 0; 
+}
+.main-names .ampersand {
+    font-size: 2.5rem; /* تنسيق حجم علامة الـ & لتكون جمالية ومريحة */
+    color: #c5a059;    /* ذهبي متناسق مع النمط العام */
+    display: inline-block;
+    margin: 5px 0;
+}
+
 .day-name { font-size: 1.15rem; font-weight: 700; letter-spacing: 4px; opacity: 0.9; color: #2b040a; }
 .main-date { font-size: 2.8rem; font-weight: 800; color: #600018; margin: 10px 0; }
 .invitation-text { font-size: 1.15rem; line-height: 1.8; color: #2b040a; font-weight: 700; max-width: 95%; }
@@ -308,7 +322,7 @@ h1, h2, h3, h4 {
 .share-p { font-size: 1.05rem; color: #2b040a; font-weight: 700; margin-bottom: 15px; }
 .footer-buttons-vertical { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 320px; margin: 0 auto; }
 
-/* إخفاء شريط التمرير الافتراضي لشكل فخم انسيابي كالتطبيقات الذكية */
+/* إخفاء شريط التمرير الافتراضي لشكل فخم انسيابي */
 ::-webkit-scrollbar {
     width: 0px;
     background: transparent;
